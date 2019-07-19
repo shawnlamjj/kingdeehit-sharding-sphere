@@ -96,16 +96,16 @@ ShardingSphere是多接入端共同组成的生态圈。
 
 ![Roadmap](https://shardingsphere.apache.org//document/current/img/shardingsphere-roadmap_cn.png)
 
-## 项目工程情况
+## kingdeehit-sharding-sphere简介
 
-#### 1. kingdeehit-autoconfigure：作为子工程引入主项目
+#### 1. kingdeehit-autoconfigure：作为子工程引入到工程项目
 
 #### 2. kingdeehit-base：作为提供远程读取和添加动态数据源服务
 
 
 ## 引入步骤
 
-#### 1. 部署读取动态数据源服务，kingdeehit-base，初始化脚本，所有的数据源都配置在里面，包括分库分表规则
+#### 1. 部署读取动态数据源服务kingdeehit-base，并初始化脚本，需要分片的应用数据源都配置在里面，包括分库分表规则
 ```
 -- ----------------------------
 -- Table structure for sharding_data_source
