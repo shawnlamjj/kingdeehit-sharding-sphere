@@ -105,9 +105,43 @@ ShardingSphere是多接入端共同组成的生态圈。
 
 ## 引入步骤
 
-#### 1. 部署读取动态数据源服务，kingdeehit-base，初始化脚本，所有的数据源都配置在该表，包括分库分表规则
+#### 1. 部署读取动态数据源服务，kingdeehit-base，初始化脚本，所有的数据源都配置在里面，包括分库分表规则
 ```
+-- ----------------------------
+-- Table structure for sharding_data_source
+-- ----------------------------
+DROP TABLE IF EXISTS `sharding_data_source`;
+CREATE TABLE `sharding_data_source`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `rule_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '环境前缀',
+  `database_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '0：Mysql  1：SQLServer',
+  `url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '连接地址',
+  `user_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据源 用户名',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '数据源密码',
+  `driver_class` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '驱动全类名',
+  `master_slave_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '主(master)  从(slave)',
+  `sharding_column` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分库的列',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
+DROP TABLE IF EXISTS `sharding_data_source_detail`;
+CREATE TABLE `sharding_data_source_detail`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `data_source_id` int(11) NULL DEFAULT NULL COMMENT '数据源id',
+  `logical_table` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '逻辑表名',
+  `sharding_column` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分表列',
+  `actual_table` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '物理表名',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of sharding_data_source
+-- ----------------------------
+INSERT INTO `sharding_data_source` VALUES (1, '99', '1', 'jdbc:mysql://127.0.0.1:3306/sharing?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8', 'root', 'root@123', 'com.mysql.jdbc.Driver', 'master', 'order_id');
+INSERT INTO `sharding_data_source` VALUES (3, '98', '1', 'jdbc:mysql://127.0.0.1:3306/sharing_slave?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8', 'root', 'root@123', 'com.mysql.jdbc.Driver', 'master', 'order_id');
+INSERT INTO `sharding_data_source` VALUES (4, 'default', '1', 'jdbc:mysql://127.0.0.1:3306/sharing_default?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT%2B8', 'root', 'root@123', 'com.mysql.jdbc.Driver', 'master', 'order_id');
+
+INSERT INTO `sharding_data_source_detail` VALUES (1, 1, 'coupon_seed', 'order_id', 'coupon_seed');
 ``` 
 
 #### 2. kingdeehit-autoconfigure通过自定义starter的方式引用到工程项目pom.xml
@@ -136,11 +170,16 @@ kafka.producerLinger=1
 kafka.producerBufferMemory=40960
 ``` 
 
-#### 4. 引入aop切面，需要把spring-aop引入pom.xml
+
+#### 4. 启动类DynamicApplication添加扫描jar包的全路径
 ```
-<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
+@SpringBootApplication(scanBasePackages={"com.yhyr.mybatis.dynamic","com.kingdeehit.cloud"})
+public class DynamicApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DynamicApplication.class, args);
+	}
+
+}
 ``` 
 
