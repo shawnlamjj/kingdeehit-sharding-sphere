@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.kingdeehit.cloud.autoconfigure.config.KafkaAutoConfig,com.kingdeehit.cloud.autoconfigure.config.DataSourceConfig

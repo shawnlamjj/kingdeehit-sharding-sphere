@@ -1,0 +1,67 @@
+{
+  "groups": [
+    {
+      "name": "kafka",
+      "type": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "kafka.consumer-auto-commit-interval",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.consumer-auto-offset-reset",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.consumer-enable-auto-commit",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.consumer-group-id",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.consumer-servers",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.consumer-session-timeout",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.producer-batch-size",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.producer-buffer-memory",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.producer-linger",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.producer-retries",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    },
+    {
+      "name": "kafka.producer-servers",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.autoconfigure.entity.KafkaProperties"
+    }
+  ],
+  "hints": []
+}
