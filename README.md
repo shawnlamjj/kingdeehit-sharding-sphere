@@ -96,18 +96,16 @@ ShardingSphere是多接入端共同组成的生态圈。
 
 ![Roadmap](https://shardingsphere.apache.org//document/current/img/shardingsphere-roadmap_cn.png)
 
-## 如何构建
+## 项目工程情况
 
-安装`maven`至您的开发环境并且执行命令：
-
-```shell
-mvn clean install -Prelease
+```
+kingdeehit-autoconfigure作为子工程引入主项目
+kingdeehit-base作为提供远程读取和添加动态数据源服务
 ``` 
 
-构建产物：
+## 引入步骤
 
 ```
-sharding-distribution/sharding-jdbc-distribution/target/apache-shardingsphere-incubating-${latest.release.version}-sharding-jdbc-bin.tar.gz: Sharding-JDBC的二进制包
-sharding-distribution/sharding-proxy-distribution/target/apache-shardingsphere-incubating-${latest.release.version}-sharding-proxy-bin.tar.gz: Sharding-Proxy的二进制包
-sharding-distribution/shardingsphere-src-distribution/target/apache-shardingsphere-incubating-${latest.release.version}-src.zip: ShardingSphere的源码包
-```
+1、部署读取动态数据源服务，kingdeehit-base，初始化脚本，所有的数据源都配置在该表，包括分库分表规则
+``` 
+
