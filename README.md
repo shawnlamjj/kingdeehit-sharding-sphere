@@ -1,4 +1,4 @@
-# kingdeehit-sharding-sphere
+# Sharding-Sphere
 ## 概述
 
 ShardingSphere是一套开源的分布式数据库中间件解决方案组成的生态圈，它由Sharding-JDBC、Sharding-Proxy和Sharding-Sidecar（计划中）这3款相互独立的产品组成。
@@ -96,7 +96,10 @@ ShardingSphere是多接入端共同组成的生态圈。
 
 ![Roadmap](https://shardingsphere.apache.org//document/current/img/shardingsphere-roadmap_cn.png)
 
-## kingdeehit-sharding-sphere简介
+
+# kingdeehit-sharding-sphere
+
+## 概述
 
 #### 1. kingdeehit-autoconfigure：作为子工程引入到工程项目
 
@@ -105,7 +108,7 @@ ShardingSphere是多接入端共同组成的生态圈。
 
 ## 引入步骤
 
-#### 1. 部署读取动态数据源服务kingdeehit-base，并初始化脚本，需要分片的应用数据源都配置在里面，包括分库分表规则
+#### 1. 部署读取动态数据源服务kingdeehit-base，初始化脚本，把需要分片的应用数据源都配置在里面，包括分库分表规则
 ```
 -- ----------------------------
 -- Table structure for sharding_data_source
