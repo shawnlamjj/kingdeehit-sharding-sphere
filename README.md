@@ -173,7 +173,6 @@ kafka.producerLinger=1
 kafka.producerBufferMemory=40960
 ``` 
 
-
 #### 4. 启动类DynamicApplication添加扫描jar包的全路径
 ```
 @SpringBootApplication(scanBasePackages={"com.yhyr.mybatis.dynamic","com.kingdeehit.cloud"})
@@ -184,5 +183,31 @@ public class DynamicApplication {
 	}
 
 }
+``` 
+
+#### 5. 更新动态数据源的广播消息，通过调用KafkaProducer发起，其他应用通过订阅的方式拉取队列消息
+##### 生产者：
+```
+kafkaProducer.sendMessage(KafkaConstants.MY_TOPIC, "Dynamic");
+``` 
+##### 消费者：
+```
+@KafkaListener(topics = {KafkaConstants.MY_TOPIC})
+    public void receiveMessage(String message){
+    	long start = System.currentTimeMillis();
+    	log.info("KafkaConsumer开始， message：{}", message);
+    	try {
+    		//收到广播消息后通知执行方法
+    		DynamicDataSource dynamicDataSource = DynamicDataSource.getInstance();
+			dynamicDataSource.reloadDynamicDataSource();
+    		
+		} catch (Exception e) {
+			log.info("KafkaConsumer发生异常，{}", e);
+			e.printStackTrace();
+		}
+    	// 计算完成任务消耗时间
+		double cost = (System.currentTimeMillis() - start) / 1000.000;
+    	log.info("KafkaConsumer结束， 耗时：{}", cost + "秒");
+    }
 ``` 
 
