@@ -98,14 +98,49 @@ ShardingSphere是多接入端共同组成的生态圈。
 
 ## 项目工程情况
 
-```
-kingdeehit-autoconfigure作为子工程引入主项目
-kingdeehit-base作为提供远程读取和添加动态数据源服务
-``` 
+#### 1. kingdeehit-autoconfigure：作为子工程引入主项目
+
+#### 2. kingdeehit-base：作为提供远程读取和添加动态数据源服务
+
 
 ## 引入步骤
 
+#### 1. 部署读取动态数据源服务，kingdeehit-base，初始化脚本，所有的数据源都配置在该表，包括分库分表规则
 ```
-1、部署读取动态数据源服务，kingdeehit-base，初始化脚本，所有的数据源都配置在该表，包括分库分表规则
+
+``` 
+
+#### 2. kingdeehit-autoconfigure通过自定义starter的方式引用到工程项目pom.xml
+```
+<dependency> 
+           <groupId>com.kingdeehit.cloud</groupId>
+           <artifactId>autoconfigure-spring-boot-starter</artifactId>
+           <version>0.0.1-SNAPSHOT</version>
+</dependency> 
+``` 
+
+#### 3. 配置kafka消息广播，application.properties/application.yml增加配置项和引入application-autoconfigure.properties
+```
+# kafka
+kafka.consumerServers=127.0.0.1:9092
+kafka.consumerEnableAutoCommit=true
+kafka.consumerSessionTimeout=6000
+kafka.consumerAutoCommitInterval=100
+kafka.consumerAutoOffsetReset=earliest
+kafka.consumerGroupId=topic_autoconfigure_1
+
+kafka.producerServers=127.0.0.1:9092
+kafka.producerRetries=0
+kafka.producerBatchSize=4096
+kafka.producerLinger=1
+kafka.producerBufferMemory=40960
+``` 
+
+#### 4. 引入aop切面，需要把spring-aop引入pom.xml
+```
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
 ``` 
 
