@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: kingdeehit-base
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: garylam
+Implementation-Vendor-Id: com.kingdeehit.cloud
+Build-Jdk: 1.8.0_152
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/base
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kingdeehit.cloud.base.mapper.DataSourceMapper">
+    <resultMap id="RelationshipResultMap" type="com.kingdeehit.cloud.base.entity.DataSourceEntity">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="rule_name" jdbcType="VARCHAR" property="ruleName" />
+        <result column="database_type" jdbcType="VARCHAR" property="databaseType" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="driver_class" jdbcType="VARCHAR" property="driverClass" />
+        <result column="master_slave_type" jdbcType="VARCHAR" property="masterSlaveType" />
+        <result column="sharding_column" jdbcType="VARCHAR" property="shardingColumn" />
+        <collection property="dataSourceDetails" ofType="com.kingdeehit.cloud.base.entity.DataSourceDetailEntity">
+            <result column="logical_table" jdbcType="VARCHAR" property="logicalTable" />
+            <result column="actual_table" jdbcType="VARCHAR" property="actualTable" />
+            <result column="sharding_column1" jdbcType="VARCHAR" property="shardingColumn" />
+        </collection>
+    </resultMap>
+    
+    <select id="getDataSources" resultMap="RelationshipResultMap" parameterType="String">
+        SELECT s.id, s.rule_name, s.database_type, s.url, s.user_name, s.password, s.driver_class, s.master_slave_type,
+               s.sharding_column, sd.logical_table, sd.actual_table, sd.sharding_column as sharding_column1 FROM sharding_data_source s
+        LEFT JOIN sharding_data_source_detail sd ON s.id = sd.data_source_id
+        WHERE s.database_type = #{databaseType}
+    </select>
+    
+    <insert id="addDataSource" parameterType="com.kingdeehit.cloud.base.entity.DataSourceEntity">
+		  insert into sharding_data_source(
+	          rule_name,
+	          url,
+	          database_type,
+	          user_name,
+	          password,
+	          driver_class,
+	          master_slave_type,
+	          sharding_column
+		  )
+		  values
+		  (
+	          #{ruleName},
+	          #{url},
+	          #{databaseType},
+	          #{userName},
+	          #{password},
+	          #{driverClass},
+	          #{masterSlaveType},
+	          #{shardingColumn}
+		  )
+	</insert>
+	
+	
+	 <insert id="addDataSourceDetail" parameterType="com.kingdeehit.cloud.base.entity.DataSourceDetailEntity">
+		  insert into sharding_data_source_detail(
+	          data_source_id,
+	          logical_table,
+	          sharding_column,
+	          actual_table
+		  )
+		  values
+		  (
+	          #{dataSourceId},
+	          #{logicalTable},
+	          #{shardingColumn},
+	          #{actualTable}
+		  )
+	</insert>
+    
+    
+</mapper>

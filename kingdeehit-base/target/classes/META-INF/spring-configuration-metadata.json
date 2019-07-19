@@ -1,0 +1,92 @@
+{
+  "groups": [
+    {
+      "name": "db.mysql",
+      "type": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "db.mysql.data-source-name",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.driver-class",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.initial-size",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.max-active",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.min-evictable-idle-time-millis",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.min-idle",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.password",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.test-on-borrow",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.test-on-return",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.test-while-idle",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.time-between-eviction-runs-millis",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.type",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.url",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.username",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.validation-query",
+      "type": "java.lang.String",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    },
+    {
+      "name": "db.mysql.validation-query-timeout",
+      "type": "java.lang.Integer",
+      "sourceType": "com.kingdeehit.cloud.base.properties.BaseDataSourceProperties"
+    }
+  ],
+  "hints": []
+}
